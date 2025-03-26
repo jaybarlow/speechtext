@@ -1,4 +1,4 @@
-"""Mafffffffin application for speech-to-text transcription."""
+"""Main application for speech-to-text transcription."""
 
 import threading
 import time
@@ -158,7 +158,7 @@ class SpeechTextApp:
         self.console.print("Starting SpeechText...", style="bold green")
         self.console.print(
             f"Using device: {self.device_index}",
-            style="bold blue",
+            style="b852fb493-4e99-4c79-af31-c6c208e596cbold blue",
         )
         self.console.print(
             f"Language: {self.language_code}",
