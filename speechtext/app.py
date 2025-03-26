@@ -1,4 +1,4 @@
-"""Main application for speech-to-text transcription."""
+"""Mafffffffin application for speech-to-text transcription."""
 
 import threading
 import time
