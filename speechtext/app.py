@@ -74,8 +74,9 @@ class SpeechTextApp:
         self.current_transcript = text
         self._update_display()
 
+        # Only output to the current text field if auto_output is enabled
         if self.auto_output and text != self.last_output_transcript:
-            self.output_manager.output_text(text)
+            self.output_manager.output_text(text, use_clipboard=False)
             self.last_output_transcript = text
 
     def _handle_usage_update(self, usage_stats: Dict[str, Any]):
@@ -158,7 +159,7 @@ class SpeechTextApp:
         self.console.print("Starting SpeechText...", style="bold green")
         self.console.print(
             f"Using device: {self.device_index}",
-            style="b852fb493-4e99-4c79-af31-c6c208e596cbold blue",
+            style="bold blue",
         )
         self.console.print(
             f"Language: {self.language_code}",

@@ -43,9 +43,9 @@ def main():
         help="Language code (default: en-US)",
     )
     parser.add_argument(
-        "--no-auto-output",
+        "--auto-output",
         action="store_true",
-        help="Disable automatic text output",
+        help="Enable automatic text output to current field",
     )
     parser.add_argument(
         "--list-devices",
@@ -89,7 +89,7 @@ before-you-begin""",
     app = SpeechTextApp(
         device_index=args.device,
         language_code=args.language,
-        auto_output=not args.no_auto_output,
+        auto_output=args.auto_output,
     )
 
     try:

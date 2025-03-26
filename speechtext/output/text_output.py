@@ -3,6 +3,7 @@
 import pyperclip
 from pynput.keyboard import Key, Controller
 from loguru import logger
+import time
 
 
 class TextOutputManager:
@@ -46,13 +47,32 @@ class TextOutputManager:
         # Copy the new text to clipboard
         pyperclip.copy(text)
 
-        # Paste the text
-        with self.keyboard.pressed(Key.cmd):
-            self.keyboard.press("v")
-            self.keyboard.release("v")
+        # Small delay to ensure clipboard has been updated
+        time.sleep(0.1)
+
+        # Try Command+V (Mac)
+        try:
+            with self.keyboard.pressed(Key.cmd):
+                self.keyboard.press("v")
+                self.keyboard.release("v")
+        except Exception as e:
+            logger.warning(f"Command+V paste failed: {e}")
+            # Fallback to Control+V (Windows/Linux)
+            try:
+                with self.keyboard.pressed(Key.ctrl):
+                    self.keyboard.press("v")
+                    self.keyboard.release("v")
+            except Exception as e:
+                logger.error(f"Control+V paste also failed: {e}")
+
+        # Small delay before restoring clipboard
+        time.sleep(0.1)
 
         # Restore the previous clipboard content
-        pyperclip.copy(previous_clipboard)
+        try:
+            pyperclip.copy(previous_clipboard)
+        except Exception as e:
+            logger.warning(f"Failed to restore clipboard: {e}")
 
     def _output_via_typing(self, text: str):
         """
