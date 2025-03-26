@@ -1,15 +1,31 @@
 [project]
 name = "speechtext"
 version = "0.1.0"
-description = "Add your description here"
+description = "Transcribe audio from iPhone mic to text"
 readme = "README.md"
-requires-python = ">=3.12.9"
+requires-python = ">=3.12.9,<3.13"
 dependencies = [
     "black>=25.1.0",
+    "google-cloud-speech>=2.31.1",
     "httpx>=0.28.1",
+    "keyboard>=0.13.5",
     "loguru>=0.7.3",
     "mypy>=1.15.0",
+    "pyaudio>=0.2.14",
+    "pyperclip>=1.9.0",
+    "pynput>=1.8.1",
     "pytest>=8.3.5",
     "rich>=13.9.4",
     "ruff>=0.11.2",
+    "sounddevice>=0.5.1",
+    "numpy>=2.2.4",
 ]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.ruff]
+line-length = 88
+indent-width = 4
+target-version = "py312"
