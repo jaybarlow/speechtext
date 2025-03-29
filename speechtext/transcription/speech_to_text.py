@@ -11,7 +11,7 @@ from loguru import logger
 AudioChunks = Iterator[np.ndarray]
 AudioBytes = Iterator[bytes]
 
-# Speech-to-Text pricing (as of 2023)
+# Speech-to-Text pfricing (as of 2023)
 # Standard model: $0.006 per 15 seconds
 # Enhanced model: $0.009 per 15 seconds
 PRICING_PER_15_SECONDS = 0.006
